@@ -1,4 +1,5 @@
 project(zenixa)
+set(ANDROID_ABI armeabi-v7a;arm64-v8a)
 
 file(GLOB src
   main.cpp

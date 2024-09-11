@@ -11,7 +11,7 @@
 // this works on all gt versions with debug symbols in
 // ~ Zenixa
 
-constexpr float DESIRED_FPS = 144.f;
+constexpr float DESIRED_FPS = 0.f;
 static float ScreenSizeX, ScreenSizeY;
 
 void (*SetFPSLimit)(void*, float);
@@ -40,21 +40,18 @@ void hkBaseAppDraw(void* baseapp)
 
   ImGuiIO& io = ImGui::GetIO();
 
-  float fps = io.Framerate;
-
-  char DisplayString[30];
-  snprintf(DisplayString, sizeof(DisplayString), "github.com/Zenixa | FPS: %.2f", fps);
+  const std::string DisplayString = "github.com/Zenixa | FPS Unlocked";
 
   auto draw = ImGui::GetBackgroundDrawList();
-  auto watermark = DisplayString;
+  auto watermark = DisplayString.c_str();
   auto WatermarkSize = ImGui::CalcTextSize(watermark);
 
   auto yOffset = 5;
   auto offset = 4;
 
-  draw->AddRectFilled(ImVec2(6, 4 + yOffset), ImVec2((4 * 2) + WatermarkSize.x + 8, 6 + yOffset), ImColor(0.8f, 0.4f, 1.0f, 1.0f));
-  draw->AddRectFilled(ImVec2(6, 6 + yOffset), ImVec2((4 * 2) + WatermarkSize.x + 8, 30 + yOffset), ImColor(0.2117647081613541f, 0.2235294133424759f, 0.2470588237047195f, 1.0f));	
-  draw->AddText(ImVec2(10, 10 + yOffset), ImColor(255, 255, 255, 255), DisplayString);
+  draw->AddRectFilled(ImVec2(6, 4 + yOffset), ImVec2((4 * 2) + WatermarkSize.x + 13, 6 + yOffset), ImColor(0.8f, 0.4f, 1.0f, 1.0f));
+  draw->AddRectFilled(ImVec2(6, 6 + yOffset), ImVec2((4 * 2) + WatermarkSize.x + 13, 30 + yOffset), ImColor(0.2117647081613541f, 0.2235294133424759f, 0.2470588237047195f, 1.0f));	
+  draw->AddText(ImVec2(10, 10 + yOffset), ImColor(255, 255, 255, 255), DisplayString.c_str());
 
   ImGui::Render();
 

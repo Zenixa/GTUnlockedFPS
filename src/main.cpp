@@ -54,7 +54,6 @@ void hkBaseAppDraw(void* baseapp)
   draw->AddText(ImVec2(10, 10 + yOffset), ImColor(255, 255, 255, 255), DisplayString.c_str());
 
   ImGui::Render();
-
   glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
 
   ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
